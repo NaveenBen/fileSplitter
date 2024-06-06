@@ -13,7 +13,7 @@
 
 ## Instructions to run locally
 ```sh
-$ yarn install --immutable --immutable-cache --check-cache
+$ npm ci
 ```
 above command will install all the nessary packages for the nodejs application
 
