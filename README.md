@@ -24,3 +24,7 @@ above command will install all the nessary packages for the nodejs application
 $ npm run start
 ```
 above command will start the application
+
+## Improvements Suggested
+- Implement Queue for each time new files are identified in the input dir and move them to processing dir
+- add worker to handle file-split-e2e
