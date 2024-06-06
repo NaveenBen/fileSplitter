@@ -7,10 +7,13 @@ import { CheckfilesService } from './checkfiles/checkfiles.service';
 import * as fs from 'fs';
 
 @Module({
-  imports: [
-    ScheduleModule.forRoot()
+  imports: [ScheduleModule.forRoot()],
+  providers: [
+    FileSplitterService,
+    GetfilesService,
+    SplitfileService,
+    CheckfilesService,
   ],
-  providers: [FileSplitterService, GetfilesService, SplitfileService, CheckfilesService]
 })
 export class FileSplitterModule {
   onModuleInit() {

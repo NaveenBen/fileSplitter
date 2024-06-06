@@ -14,7 +14,7 @@ export class FileSplitterService {
     private readonly checkfilesService: CheckfilesService,
   ) {}
 
-  @Interval(5000) // every 5 minutes
+  @Interval(5 * 60 * 5000) // every 5 minutes
   async handleCron() {
     this.logger.debug('Checking for files to split ... [every 5 minutes]');
     const files = await this.getfilesService.getFiles('input');
@@ -39,14 +39,13 @@ export class FileSplitterService {
         'output',
         'chunk',
       );
-        console.log("🚀 ~ FileSplitterService ~ handleCron ~ isSame:", isSame)
-        if (isSame) {
-            this.logger.debug(`File ${file} was split successfully`);
-            // if the file was split successfully, add file to the processed folder
-            await this.getfilesService.moveFile(file, 'input', 'input/processed');
-        } else {
-            this.logger.error(`File ${file} was not split successfully`);
-        }
+      if (isSame) {
+        this.logger.debug(`File ${file} was split successfully`);
+        // if the file was split successfully, add file to the processed folder
+        await this.getfilesService.moveFile(file, 'input', 'input/processed');
+      } else {
+        this.logger.error(`File ${file} was not split successfully`);
+      }
     }
   }
 }
